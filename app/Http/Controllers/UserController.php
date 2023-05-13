@@ -80,5 +80,46 @@ class UserController extends Controller
         ]);
     }
 
+    public function pesanBarang(Request $request, $id)
+    {
+        $barang = Tour::findOrFail($id);
+
+        // Validasi PIN
+        $user = User::where('pin', $request->input('pin'))->first();
+        if ($user) {
+            // Kurangi stok barang sebanyak 1
+            $barang->jumlah_tiket -= 1;
+            $barang->save();
+
+            return response()->json([
+                'message' => 'Pembelian berhasil dilakukan'
+            ], 201);
+        } else {
+            return response()->json([
+                'message' => 'PIN yang dimasukkan salah'
+            ], 401);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        // Validasi inputan
+        $validatedData = $request->validate([
+            'barang_id' => 'required|exists:barangs,id',
+            'jumlah' => 'required|integer|min:1',
+        ]);
+
+        // Dapatkan data barang dari database
+        $barang = Tour::findOrFail($validatedData['barang_id']);
+
+        // Kurangi jumlah stok barang
+        $stokBarang = $barang->stokBarang;
+        $stokBarang->jumlah -= 1; // kurangi 1
+        $stokBarang->save();
+
+
+        // Tampilkan pesan sukses
+        return response()->json(['message' => 'Transaksi berhasil disimpan']);
+    }
 
 }

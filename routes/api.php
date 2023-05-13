@@ -30,8 +30,9 @@ Route::post('authenticate', [AuthController::class, 'authenticate']);
 // nambah user
 Route::post('storeUser', [UserController::class, 'storeUser']);
 Route::post('pin', [UserController::class, 'checkOut']);
-Route::post('barang/{id}/kurangi-stok', [UserController::class, 'kurangiStok']);
-Route::post('barang/{id}/kurangi-barang', [UserController::class, 'pesan']);
+Route::post('barang/{id}/kurangi-stok', [UserController::class, 'kurangiStok']); // ini awal 
+Route::post('barang/{id}/kurangi-barang', [UserController::class, 'pesan']); // ini yang bagus
+Route::post('barang/{id}/kurangi-stok-barang', [UserController::class, 'pesanBarang']);
 
 
 // konten
