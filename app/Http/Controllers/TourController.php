@@ -15,7 +15,7 @@ class TourController extends Controller
     {
         $tour = DB::table('tours')
             ->where('tipe', '=', 'T')
-            ->select('id', 'name', 'tanggal', 'lokasi', 'jumlah_tiket', 'harga', 'description', 'even_schedule')
+            ->select('id', 'name', 'tanggal', 'lokasi', 'jumlah_tiket', 'harga', 'description', 'even_schedule', 'year', 'country')
             ->get();
 
         return response()->json($tour);
@@ -29,7 +29,7 @@ class TourController extends Controller
     {
         $camp = DB::table('tours')
             ->where('tipe', '=', 'C')
-            ->select('id', 'name', 'tanggal', 'lokasi', 'jumlah_tiket', 'harga', 'description', 'even_schedule')
+            ->select('id', 'name', 'tanggal', 'lokasi', 'jumlah_tiket', 'harga', 'description', 'even_schedule', 'year', 'country')
             ->get();
 
         return response()->json($camp);
@@ -42,7 +42,7 @@ class TourController extends Controller
     {
         $concert = DB::table('tours')
             ->where('tipe', '=', 'K')
-            ->select('id', 'name', 'tanggal', 'lokasi', 'jumlah_tiket', 'harga', 'description', 'even_schedule')
+            ->select('id', 'name', 'tanggal', 'lokasi', 'jumlah_tiket', 'harga', 'description', 'even_schedule', 'year', 'country')
             ->get();
 
         return response()->json($concert);
