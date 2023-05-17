@@ -13,8 +13,10 @@ return new class extends Migration {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('year');
             $table->string('tanggal');
             $table->string('lokasi');
+            $table->string('country');
             $table->string('jumlah_tiket');
             $table->string('harga');
             $table->string('description');
